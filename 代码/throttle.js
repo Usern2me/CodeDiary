@@ -1,3 +1,8 @@
+/**
+ * 节流函数 持续触发的时候 每n秒执行一次函数
+ * @param {*} func 
+ * @param {*} wait 
+ */
 function throttle(func, wait) {
     let context, args, timeout, result
     let previous = 0
@@ -7,6 +12,7 @@ function throttle(func, wait) {
         func.apply(context, args)
     }
     let throtteld = function () {
+        // 隐式转换将时间对象转换成时间戳
         let now = +new Date()
         // 下次触发func的时间
         let remaining = wait - (now - previous)

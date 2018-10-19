@@ -1,3 +1,9 @@
+/**
+ * 防抖函数 事件持续触发 但是等事件完成后n秒才执行函数
+ * @param {*} func 
+ * @param {*} wait 
+ * @param {*} immediate 
+ */
 function debounce(func, wait, immediate) {
     let timeout, result
     let debounced = function () {
