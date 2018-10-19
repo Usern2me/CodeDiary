@@ -1,16 +1,17 @@
 import java.util.*;
 
-public class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
-
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}
-
 public class Solution {
+    // ÄÚ²¿Àà TreeNode
+    public class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        public TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         if (root == null)
@@ -26,5 +27,10 @@ public class Solution {
                 queue.offer(t.right);
         }
         return list;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        solution.PrintFromTopToBottom(root);
     }
 }
