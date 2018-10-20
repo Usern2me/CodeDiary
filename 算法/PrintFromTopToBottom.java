@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Solution {
-    // ÄÚ²¿Àà TreeNode
+    // TreeNode
     public class TreeNode {
         int val = 0;
         TreeNode left = null;
