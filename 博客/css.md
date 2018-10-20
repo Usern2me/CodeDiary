@@ -1,2 +1,2 @@
-1. [ÒÆ¶¯¶ËÊÊÅä](https://juejin.im/post/5bc7fb9ef265da0acd20ebeb?utm_source=gold_browser_extension)
-2. [²¼¾ÖºÍ viewport ½éÉÜ](https://github.com/kaola-fed/blog/issues/133)
+1. [ç§»åŠ¨ç«¯é€‚é…](https://juejin.im/post/5bc7fb9ef265da0acd20ebeb?utm_source=gold_browser_extension)
+2. [å¸ƒå±€å’Œ VIEWPORT ä»‹ç»](https://github.com/kaola-fed/blog/issues/133)
