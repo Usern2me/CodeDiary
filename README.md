@@ -1,4 +1,4 @@
-- [CodeDiary](#codediary)
+![](logo1.png)
 
 **代码**->用来放代码  
 **博客**->用来放博客  
