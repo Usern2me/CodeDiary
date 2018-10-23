@@ -1,13 +1,10 @@
 class myPromise {
     constructor(executor) {
-        // 私有属性
         this._promiseStatus = myPromise.PENDING
         this._promiseValue
         this.execute(executor)
     }
-    // 执行器，构造时就执行
     execute(executor) {
-        // executor如果不是函数抛出错误
         if (typeof executor != 'function') {
             throw new Error(`${executor} is not a function`)
         }
@@ -26,24 +23,23 @@ class myPromise {
             this._promiseValue = e
         }
     }
-    // then的回调是异步的
     then(onfullfilled, onrejected) {
         let _ref = null,
             timer = null,
             result = new myPromise(() => {})
-        // 监听状态的改变
+
         timer = setInterval(() => {
             if ((typeof onfullfilled == 'function' && this._promiseStatus == myPromise.FULLFILLED) ||
                 (typeof onrejected == 'function' && this._promiseStatus == myPromise.REJECTED)) {
                 clearInterval(timer)
                 try {
-                    // 判断status
+
                     if (this._promiseStatus == myPromise.FULLFILLED) {
                         _ref = onfullfilled(this._promiseValue)
                     } else {
                         _ref = onrejected(this._promiseValue)
                     }
-                    // 如果_ref是myPromise实例，需要返回这个实例，实现链式调用
+
                     if (_ref instanceof myPromise) {
                         timer = setInterval(() => {
                             if (_ref._promiseStatus == myPromise.FULLFILLED ||
