@@ -16,28 +16,29 @@ function Observe(data) {
   this.walk(data);
 }
 Observe.prototype = {
-  walk: function(data) {
+  walk: function (data) {
     let me = this;
     Object.keys(data).forEach(key => {
       me.convert(key, data[key]);
     });
   },
-  convert: function(key, val) {
+  convert: function (key, val) {
     this.defineReactive(this.data, key, val);
   },
   // 用原生的definePropperty方法定义get和set函数
-  defineReactive: function(data, key, val) {
+  defineReactive: function (data, key, val) {
     let dep = new Dep();
     let childObj = observe(val);
 
     Object.defineProperty(data, key, {
       enumerable: true,
       configurable: false,
-      get: function() {
+      // get的时候添加进dep数组里
+      get: function () {
         Dep.target && dep.depend();
         return val;
       },
-      set: function(newVal) {
+      set: function (newVal) {
         if (val === newVal) {
           return;
         }
@@ -63,25 +64,26 @@ function observe(value, vm) {
  * 负责收集订阅者，遍历并在数据变动的时候调用update方法
  * */
 let uid = 0;
+
 function Dep() {
   this.id = uid++;
   this.subs = [];
 }
 Dep.prototype = {
-  addSubs: function(sub) {
+  addSubs: function (sub) {
     this.subs.push(sub);
   },
-  depend: function() {
+  depend: function () {
     Dep.target.addDep(this);
   },
-  removeSub: function(sub) {
+  removeSub: function (sub) {
     let index = this.subs.indexOf(sub);
     if (index != -1) {
       this.subs.splice(index, 1);
     }
   },
   // 遍历通知订阅者，触发他们的更新函数
-  notify: function() {
+  notify: function () {
     this.subs.forEach(sub => {
       sub.update();
     });
@@ -112,7 +114,7 @@ function Watcher(vm, exp, cb) {
 }
 
 Watcher.prototype = {
-  get: function() {
+  get: function () {
     // Dep.target全局记录watcher
     Dep.target = this;
     // 触发get 把自己添加到订阅器里面
@@ -121,10 +123,10 @@ Watcher.prototype = {
     Dep.target = null;
     return value;
   },
-  update: function() {
+  update: function () {
     this.run();
   },
-  run: function() {
+  run: function () {
     let value = this.get();
     let oldValue = this.value;
     if (value !== oldValue) {
@@ -147,16 +149,16 @@ Watcher.prototype = {
   // 这一步是在 this.get() --> this.getVMVal() 里面完成，forEach时会从父级开始取值，间接调用了它的getter
   // 触发了addDep(), 在整个forEach过程，当前wacher都会加入到每个父级过程属性的dep
   // 例如：当前watcher的是'child.child.name', 那么child, child.child, child.child.name这三个属性的dep都会加入当前watcher
-  addDep: function(dep) {
+  addDep: function (dep) {
     if (!this.depIds.hasOwnProperty(dep.id)) {
       dep.addSubs(this);
       this.depIds[dep.id] = dep;
     }
   },
-  parseGetter: function(exp) {
+  parseGetter: function (exp) {
     if (/[^\w.$]/.test(exp)) return;
     let exps = exp.split(".");
-    return function(obj) {
+    return function (obj) {
       for (let i = 0; i < exps.length; i++) {
         if (!obj) return;
         obj = obj[exps[i]];
@@ -179,11 +181,11 @@ function Compile(el, vm) {
   }
 }
 Compile.prototype = {
-  init: function() {
+  init: function () {
     this.compileElement(this.$fragment);
   },
   // 创建文档碎片，因为放在内存不会引起重绘，比创建结点有更好的性能
-  node2Fragment: function(el) {
+  node2Fragment: function (el) {
     let fragment = document.createDocumentFragment(),
       child;
     while ((child = el.firstChild)) {
@@ -192,7 +194,7 @@ Compile.prototype = {
     return fragment;
   },
   // 遍历节点进行扫描编译
-  compileElement: function(el) {
+  compileElement: function (el) {
     let childNodes = el.childNodes,
       me = this;
     Array.prototype.slice.call(childNodes).forEach(node => {
@@ -211,10 +213,10 @@ Compile.prototype = {
       }
     });
   },
-  compile: function(nodes) {
+  compile: function (nodes) {
     let nodeAttrs = node.attributes,
       me = this;
-    Array.prototype.slice.call(nodeAttrs).forEach(function(attr) {
+    Array.prototype.slice.call(nodeAttrs).forEach(function (attr) {
       // 以v-命名
       let attrName = attr.name;
       if (me.isDirective(attrName)) {
@@ -231,63 +233,63 @@ Compile.prototype = {
       }
     });
   },
-  compileText: function(node, exp) {
+  compileText: function (node, exp) {
     compileUtil.text(node, this.$vm, exp);
   },
-  isDirective: function(attr) {
+  isDirective: function (attr) {
     return attr.indexOf("v-") == 0;
   },
-  isEventDirective: function(dir) {
+  isEventDirective: function (dir) {
     return dir.indexOf("on") === 0;
   },
-  isElementNode: function(node) {
+  isElementNode: function (node) {
     return node.nodeType == 1;
   },
-  isTextNode: function(node) {
+  isTextNode: function (node) {
     return node.nodeType == 3;
   }
 };
 
 // 指令处理util
 let compileUtil = {
-  text: function(node, vm, exp) {
+  text: function (node, vm, exp) {
     this.bind(node, vm, exp, "text");
   },
-  html: function(node, vm, exp) {
+  html: function (node, vm, exp) {
     this.bind(node, vm, exp, "html");
   },
-  model: function(node, vm, exp) {
+  model: function (node, vm, exp) {
     this.bind(node, vm, exp, "model");
     let me = this,
       val = this._getVMVal(vm, exp);
-    node.addEventListener("input", function(e) {
+    node.addEventListener("input", function (e) {
       let newValue = e.target.value;
       if (val === newVal) return;
       me._setVMVal(vm, exp, newValue);
       val = newValue;
     });
   },
-  class: function(node, vm, exp) {
+  class: function (node, vm, exp) {
     this.bind(node, vm, exp, "class");
   },
-  bind: function(node, vm, exp, dir) {
+  bind: function (node, vm, exp, dir) {
     let updaterFn = updater[dir + "Updater"];
     // 第一次初始化视图
     updaterFn && updaterFn(node, vm[exp]);
     // 实例化watcher,在对应的属性消息订阅器里面添加改watcher
-    new Watcher(vm, exp, function(newValue, oldValue) {
+    new Watcher(vm, exp, function (newValue, oldValue) {
       updaterFn && updaterFn(node, newValue, oldValue);
     });
   },
   //事件处理
-  eventHandler: function(node, vm, exp, dir) {
+  eventHandler: function (node, vm, exp, dir) {
     let eventType = dir.split(":")[1],
       fn = vm.$options.methods && vm.$options.methods[exp];
     if (eventType && fn) {
       node.addEventListener(eventType, fn.bind(vm), false);
     }
   },
-  _getVMVal: function(vm, exp) {
+  _getVMVal: function (vm, exp) {
     let val = vm;
     exp = exp.split(".");
     exp.forEach(v => {
@@ -295,7 +297,7 @@ let compileUtil = {
     });
     return val;
   },
-  _setVMVal: function(vm, exp, value) {
+  _setVMVal: function (vm, exp, value) {
     let val = vm;
     exp = exp.split(".");
     exp.forEach((v, i) => {
@@ -310,19 +312,19 @@ let compileUtil = {
 };
 // 更新函数
 let updater = {
-  textUpdater: function(node, value) {
+  textUpdater: function (node, value) {
     node.textContent = typeof value == "undefined" ? "" : value;
   },
-  htmlUpdater: function(node, value) {
+  htmlUpdater: function (node, value) {
     node.innerHTML = typeof value == "undefined" ? "" : value;
   },
-  classUpdater: function(node, value, oldValue) {
+  classUpdater: function (node, value, oldValue) {
     let className = node.className;
     className = className.replace(oldValue, "").replace(/\s$/, "");
     let space = className && String(value) ? " " : "";
     node.className = className + space + value;
   },
-  modelUpdater: function(node, value, oldValue) {
+  modelUpdater: function (node, value, oldValue) {
     node.value = typeof value == "undefined" ? "" : value;
   }
 };
@@ -343,11 +345,11 @@ function MVVM(options) {
 }
 
 MVVM.prototype = {
-  $watch: function(key, cb, options) {
+  $watch: function (key, cb, options) {
     new Watcher(this, key, cb);
   },
   // 添加一层代理，可以直接访问vm._data的值
-  _proxy: function(key, setter, getter) {
+  _proxy: function (key, setter, getter) {
     let me = this;
     setter =
       setter ||
