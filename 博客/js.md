@@ -8,6 +8,7 @@
 8.  [JavaScript 开发者应懂的 33 个概念](https://juejin.im/entry/5bc9aae56fb9a05d20687bf3)
 9.  [如何在移动端做出听话的输入框](https://juejin.im/post/5bce7c806fb9a05d1658c3e4)
 10. [js 中 this 的指向](https://www.cnblogs.com/pssp/p/5216085.html)
-11. [React 入门教程--阮一峰](http://www.ruanyifeng.com/blog/2015/03/react.html)
-12. [手摸手教你使用 WebSocket](https://juejin.im/post/5bcad1326fb9a05cda779d0b?utm_source=gold_browser_extension)
+
+12. [手把手教你使用 WebSocket](https://juejin.im/post/5bcad1326fb9a05cda779d0b?utm_source=gold_browser_extension)
 13. [前端状态管理-redux,vuex,mobx](https://juejin.im/post/5bd3262af265da0aa665085b?utm_source=gold_browser_extension)
+

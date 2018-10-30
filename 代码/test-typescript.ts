@@ -47,9 +47,9 @@ class Block {
     this.nonce = value;
   }
   public computeHash() {
-    let sha256 = crypto.createHash("sha256");
-    sha256.update(`${this.prevHash}${this.nonce.toString(16)}`, "utf8");
-    let hash = sha256.digest("hex");
-    return hash;
+    //let sha256 = crypto.createHash("sha256");
+    //sha256.update(`${this.prevHash}${this.nonce.toString(16)}`, "utf8");
+    //let hash = sha256.digest("hex");
+    //return hash;
   }
 }

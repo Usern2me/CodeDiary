@@ -1,3 +1,6 @@
 1. [markdown 编译原理](https://www.villainhr.com/page/2016/08/26/markdown%20%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86)
 2. [StuQ《Node.js 微信开发》--mogodb](https://i5ting.github.io/wechat-dev-with-nodejs/index.html)
 3. [项目中的 git 使用规范](https://jaeger.itscoder.com/dev/2018/09/12/using-git-in-project.html)
+4. [前端必会的 Nginx 入门视频教程](https://juejin.im/post/5bd7a6046fb9a05d2c43f8c7)
+5. [浅析微信扫码登录原理](https://juejin.im/post/5bd5784651882528e67c2caf)
+6. [前端文件下载通识篇](https://juejin.im/post/5bd5547a6fb9a05cdd2d5109)
