@@ -4,3 +4,4 @@
 4. [前端必会的 Nginx 入门视频教程](https://juejin.im/post/5bd7a6046fb9a05d2c43f8c7)
 5. [浅析微信扫码登录原理](https://juejin.im/post/5bd5784651882528e67c2caf)
 6. [前端文件下载通识篇](https://juejin.im/post/5bd5547a6fb9a05cdd2d5109)
+7. [2018 年最佳 JavaScript 数据可视化和图表库](https://segmentfault.com/a/1190000016841339)
