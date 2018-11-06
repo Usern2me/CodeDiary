@@ -5,3 +5,5 @@
 5. [浅析微信扫码登录原理](https://juejin.im/post/5bd5784651882528e67c2caf)
 6. [前端文件下载通识篇](https://juejin.im/post/5bd5547a6fb9a05cdd2d5109)
 7. [2018 年最佳 JavaScript 数据可视化和图表库](https://segmentfault.com/a/1190000016841339)
+8. [数据可视化：浅谈热力图如何在前端实现](https://juejin.im/post/5bdc2323518825170e4a8cf8?utm_source=gold_browser_extension)
+9. [前端工程师的日常修炼清单](https://juejin.im/entry/5be0ddca51882516df0301ea?utm_source=gold_browser_extension)
