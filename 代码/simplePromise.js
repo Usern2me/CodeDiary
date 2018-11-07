@@ -61,6 +61,16 @@ class myPromise {
         }, 0)
         return result
     }
+    // 返回之前的值和错误 作为一个promise
+    finally(cb) {
+        let p = this.constructor;
+        return this.then(
+            value => p.resolve(cb()).then(() => value),
+            error => p.resolve(cb()).then(() => {
+                throw error;
+            })
+        )
+    }
 }
 myPromise.PENDING = 'pending'
 myPromise.FULLFILLED = 'resolved'
