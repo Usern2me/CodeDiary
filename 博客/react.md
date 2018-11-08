@@ -7,3 +7,4 @@
    > d.抽象和更改 Props 更改
 2. [React 入门教程--阮一峰](http://www.ruanyifeng.com/blog/2015/03/react.html)
 3. [让 react 用起来更得心应手——(React 基础简析)](https://juejin.im/post/5bcc104ce51d450e543edd70?utm_source=gold_browser_extension)
+4. [React 从渲染原理到性能优化（一）--IMWeb](http://imweb.io/topic/5b8df7db7cd95ea863193582)
