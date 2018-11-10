@@ -43,7 +43,7 @@ let dfs = (tree) => {
 dfs(tree);
 console.log('dfs->' + res);
 
-//bfs
+//bfs 广度优先
 let res1 = [];
 let stack = [tree];
 let count = 0;

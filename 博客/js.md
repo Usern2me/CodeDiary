@@ -9,6 +9,7 @@
 9.  [如何在移动端做出听话的输入框](https://juejin.im/post/5bce7c806fb9a05d1658c3e4)
 10. [js 中 this 的指向](https://www.cnblogs.com/pssp/p/5216085.html)
 
-12. [手把手教你使用 WebSocket](https://juejin.im/post/5bcad1326fb9a05cda779d0b?utm_source=gold_browser_extension)
-13. [前端状态管理-redux,vuex,mobx](https://juejin.im/post/5bd3262af265da0aa665085b?utm_source=gold_browser_extension)
-
+11. [手把手教你使用 WebSocket](https://juejin.im/post/5bcad1326fb9a05cda779d0b?utm_source=gold_browser_extension)
+12. [前端状态管理-redux,vuex,mobx](https://juejin.im/post/5bd3262af265da0aa665085b?utm_source=gold_browser_extension)
+13. [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7)
+    > 线程、浏览器内核进程联系、浏览器渲染流程、事件机制

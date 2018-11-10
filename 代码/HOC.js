@@ -21,11 +21,11 @@ export default function (description) {
     }
 }
 
-@withDescription('aaa')
-export default class Geek extends Component{
-    render() {
-        return (
-            //...
-        );
-    }
-}
+// @withDescription('aaa')
+// export default class Geek extends Component{
+//     render() {
+//         return (
+//             //...
+//         );
+//     }
+// }
