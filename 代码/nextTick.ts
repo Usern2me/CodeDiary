@@ -95,6 +95,7 @@ export function withMacroTask(fn: Function): Function {
   );
 }
 
+// 用于一次性更改一堆需要渲染的东西，传入的是一个数组
 export function nextTick(cb?: Function, ctx?: Object) {
   let _resolve;
   callbacks.push(() => {
