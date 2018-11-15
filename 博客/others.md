@@ -10,4 +10,5 @@
 10. [前端&后端程序员必备的 Linux 基础知识](https://juejin.im/post/5b3b19856fb9a04fa42f8c71)
 11. [网站性能优化实战（二）--IMWeb](http://imweb.io/topic/5b4d417eee0c3b0779df96d9)
 12. [前端用到的算法](https://juejin.im/post/5958bac35188250d892f5c91)
-13. [年终回顾，为你汇总一份「前端技术清单」--超全](https://juejin.im/post/5bdfb387e51d452c8e0aa902?utm_source=gold_browser_extension)
+13. [年终回顾，为你汇总一份「前端技术清单」](https://juejin.im/post/5bdfb387e51d452c8e0aa902?utm_source=gold_browser_extension)
+14. [提升 scroll 的性能--比较全面](https://zhuanlan.zhihu.com/p/30078937)

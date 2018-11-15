@@ -2,3 +2,4 @@
 2. [布局和 VIEWPORT 介绍](https://github.com/kaola-fed/blog/issues/133)
 3. [移动 web 1 像素边框 瞧瞧大公司是怎么做的](https://segmentfault.com/a/1190000007604842)
 4. [使用 JS 控制伪元素的几种方法](http://www.dengzhr.com/frontend/css/797)
+5. [一篇真正教会你开发移动端页面的文章-关于 rem 里字体的换算](http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/)
