@@ -2,7 +2,7 @@
  * 不是完美的深拷贝 
  * 只是给个实例
  */
-var deepCopy = function(obj) {
+let deepCopy = function(obj) {
     if (typeof obj !== 'object') return;
     var newObj = obj instanceof Array ? [] : {};
     for (var key in obj) {
@@ -12,3 +12,4 @@ var deepCopy = function(obj) {
     }
     return newObj;
 }
+
