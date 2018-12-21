@@ -2,3 +2,4 @@
 2.  [Vue 中的无渲染组件](https://juejin.im/entry/5bbd690cf265da0af5033f2b)
 3.  [js 设计模式详解](https://www.cnblogs.com/tugenhua0707/p/5198407.html)
 4.  [vue 技术解密文档](https://ustbhuangyi.github.io/vue-analysis/)
+5.  [vue高阶组件和react对比](http://hcysun.me/2018/01/05/%E6%8E%A2%E7%B4%A2Vue%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/)
