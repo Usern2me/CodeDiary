@@ -1,3 +1,5 @@
 1. [浏览器渲染优化](https://github.com/fi3ework/Blog/issues/9)
 2. [浏览器渲染过程与性能优化](https://sylvanassun.github.io/2017/10/03/2017-10-03-BrowserCriticalRenderingPath/)
 3. [前端优化常用技术心得](https://juejin.im/post/5bd16676f265da0ae677820d)
+4. [聊一聊淘宝首页和它背后的一套-阎王](http://taobaofed.org/blog/2016/06/02/thing-about-taobao-homepage/)
+5. [淘宝首页性能优化实践-阎王](http://taobaofed.org/blog/2016/04/06/optimize-in-tbhome/)
