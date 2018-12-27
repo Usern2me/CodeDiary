@@ -13,3 +13,6 @@
 12. [前端状态管理-redux,vuex,mobx](https://juejin.im/post/5bd3262af265da0aa665085b?utm_source=gold_browser_extension)
 13. [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7)
     > 线程、浏览器内核进程联系、浏览器渲染流程、事件机制
+14. [在 JavaScript ES6+ 中从零开始学习函数式编程&组合式软件编写系列译文](https://juejin.im/post/5a0275406fb9a04506710bbc)
+15. [[译] 如何使用 JavaScript 构建响应式引擎 —— Part 1：可观察的对象](https://juejin.im/post/58dc9da661ff4b0061547ca0)
+16. [[译] 使用原生 JavaScript 构建状态管理系统](https://juejin.im/post/5b763528e51d45559e3a5b64)

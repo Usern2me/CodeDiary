@@ -14,3 +14,5 @@
    > 3、由于 mixins 是侵入式的，它改变了原组件，所以修改 mixins 等于修改原组件，随着需求的增长 mixins 将变得复杂，导致滚雪球的复杂性。
 6. [Presentational and Container Components-Dan Abramov](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 7. [高性能 React 组件-FED](http://taobaofed.org/blog/2016/08/12/optimized-react-components/)
+8. [Redux: The Single Immutable State Tree-男神 Dan](https://egghead.io/lessons/react-redux-the-single-immutable-state-tree)
+9. [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379)
