@@ -16,4 +16,6 @@
 7. [高性能 React 组件-FED](http://taobaofed.org/blog/2016/08/12/optimized-react-components/)
 8. [Redux: The Single Immutable State Tree-男神 Dan](https://egghead.io/lessons/react-redux-the-single-immutable-state-tree)
 9. [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379)
-10. [React 设计思想](https://github.com/react-guide/react-basic)
+10. [React 源码剖析系列 － 解密 setState](https://zhuanlan.zhihu.com/p/20328570?refer=purerender)
+11. [React 设计思想](https://github.com/react-guide/react-basic)
+12. [React组件方法中为什么要绑定this](http://blog.51cto.com/13869008/2147770)
