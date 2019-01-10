@@ -4,3 +4,4 @@
    > 简单请求->get,post,accept,accept-language,x-www-form-encoded,复杂请求有预请求
 4. [前端如何配合后端完成 RBAC 权限控制](https://juejin.im/post/5c1f8d6c6fb9a049e06353aa?utm_source=gold_browser_extension)
    > RBAC 暂时看不懂，留着以后应该有用
+5. [九种跨域方式--比较全](https://segmentfault.com/a/1190000016653873rf)

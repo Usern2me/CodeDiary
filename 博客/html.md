@@ -3,3 +3,5 @@
 3. [前端优化常用技术心得](https://juejin.im/post/5bd16676f265da0ae677820d)
 4. [聊一聊淘宝首页和它背后的一套-阎王](http://taobaofed.org/blog/2016/06/02/thing-about-taobao-homepage/)
 5. [淘宝首页性能优化实践-阎王](http://taobaofed.org/blog/2016/04/06/optimize-in-tbhome/)
+6. [load与DOMContentLoad](https://juejin.im/post/5b2a508ae51d4558de5bd5d1)
+7. [大公司里怎样开发和部署前端代码？--知乎里的 蛮详细的](https://www.zhihu.com/question/20790576/answer/32602154)
