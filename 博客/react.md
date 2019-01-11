@@ -20,4 +20,4 @@
 11. [React 设计思想](https://github.com/react-guide/react-basic)
 12. [React组件方法中为什么要绑定this](http://blog.51cto.com/13869008/2147770)
 13. [以withRouter出发看React高阶组件 ](https://github.com/caistrong/Blog/issues/74)
-    > 在代码的`withRouter`一篇里有源码和注释  
+14. [从 loading 的 9 种写法谈 React 业务开发](https://juejin.im/post/5c348a7451882524ed5b945c)
