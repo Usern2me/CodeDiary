@@ -1,3 +1,4 @@
+/* 判断tree1子树里是否包含tree2 */
 public class Solution{
     public boolean HasSubtree(TreeNode root1,TreeNode root2) {
         if(root2==null) return false;

@@ -71,6 +71,33 @@ class myPromise {
             })
         )
     }
+    // 传入一个promise数组，只有全部被resolve的时候才会是成功态，其余情况都是失败态
+    // 并且后面还能接then进行链式调用
+    all(promise_arr) {
+        return new Promise((resolve, reject) => {
+            let count = 0
+            let length = promise_arr.length
+            let res = [] //返回的结果
+            function resolveData(index, value) {
+                res[index] = value
+                if (++count === length)
+                    resolve(value)
+            }
+            for (let i = 0; i < length; i++) {
+                promise_arr[i].then(v => {
+                    resolveData(i, v)
+                }, reject)
+            }
+        })
+    }
+    // 传入一个promise数组，返回第一个被resolve或reject的promise的值
+    race(promise_arr) {
+        return new Promise((resolve, reject) => {
+            for (let i = 0; i < promise_arr.length; i++) {
+                promise_arr[i].then(resolve, reject)
+            }
+        })
+    }
 }
 myPromise.PENDING = 'pending'
 myPromise.FULLFILLED = 'resolved'
