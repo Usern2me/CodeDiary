@@ -16,4 +16,4 @@
 14. [在 JavaScript ES6+ 中从零开始学习函数式编程&组合式软件编写系列译文](https://juejin.im/post/5a0275406fb9a04506710bbc)
 15. [[译] 如何使用 JavaScript 构建响应式引擎 —— Part 1：可观察的对象](https://juejin.im/post/58dc9da661ff4b0061547ca0)
 16. [[译] 使用原生 JavaScript 构建状态管理系统](https://juejin.im/post/5b763528e51d45559e3a5b64)
-17. 
+17. [前端面试查漏补缺(蛮全)](https://juejin.im/post/5c6c182ee51d45760b1c8e30)
