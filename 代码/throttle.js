@@ -37,5 +37,5 @@ function throttle(func, wait) {
         previous = 0
         timeout = null
     }
-    return throtteld
+    return throttle
 }
