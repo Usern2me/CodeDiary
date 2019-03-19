@@ -1,3 +1,5 @@
 1. [js 多线程编程--web worker](https://juejin.im/post/5bcc1887f265da0aff177227)
 2. [Puppeteer 之爬虫入门](https://blog.fundebug.com/2017/11/01/guide-to-automating-scraping-the-web-with-js/)
 3. [【全文】狼叔：如何正确的学习 Node.js](https://juejin.im/entry/5b518829e51d455d94715d59)
+4. [koa的實現](https://juejin.im/post/5c8f6f53e51d4516f6680012?utm_source=gold_browser_extension)
+5. [提高效率，记一个内部工具的开发经历](https://juejin.im/post/5c8a7ad06fb9a049ec6bf444?utm_source=gold_browser_extension)
