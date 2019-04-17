@@ -27,3 +27,4 @@
 18. [React 源码解析(四):事件系统](https://juejin.im/post/5a0cf54ff265da43333df2c4)
 19. [dva 使用文档](https://dvajs.com/guide/develop-complex-spa.html#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6)
 20. [React & Npm 组件库维护经验](https://github.com/ascoders/blog/issues/5)
+21. [React深入分析虚拟DOM](https://juejin.im/post/5cb66fdaf265da0384128445?utm_source=gold_browser_extension)
