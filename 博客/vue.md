@@ -4,3 +4,4 @@
 4.  [vue 技术解密文档](https://ustbhuangyi.github.io/vue-analysis/)
 5.  [vue高阶组件和react对比](http://hcysun.me/2018/01/05/%E6%8E%A2%E7%B4%A2Vue%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/)
 6.  [elementUI的swiper實現原理](https://www.cnblogs.com/rynxiao/p/7640647.html)
+7.  [一张思维导图辅助你深入了解 Vue | Vue-Router | Vuex 源码架构](https://juejin.im/post/5cd7dcff51882569562224a5?utm_source=gold_browser_extension)
