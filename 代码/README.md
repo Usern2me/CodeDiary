@@ -13,6 +13,7 @@
 | simplePromise | [promise](../代码/simplePromise.js) |                  基本promise的实现 |
 | underscore    | [underscore](../代码/underscore.js) |                 underscore库的源码 |
 | zepto         |      [zepto](../代码/zepto.js)      |                          zepto源码 |
+| minipack      |   [minipack](../代码/minipack.js)   |                       模块打包示例 |
 ----
 ### 实用片段
 | Name            |                    link                     |                              intro |
