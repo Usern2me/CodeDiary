@@ -3,7 +3,7 @@
  */
 
 // NODE端
-async getWXApiTicket() {
+async function getWXApiTicket() {
     const {
         ctx,
         config
