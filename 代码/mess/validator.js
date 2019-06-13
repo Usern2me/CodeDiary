@@ -1,51 +1,113 @@
 /**
- * 校验器 使用的是策略模式 
- * 使用方法：
- * let myForm=document.getElementById('#myForm')
- * validator.validator(myForm,rules)->返回true或者错误信息的数组
- * 支持验证一个表单 字段要对应
- * rules->{
- *      name:{
- *          require:true,
- *          rule:name,
- *          msg:'please enter a name'
- *          },
- *      email:{
- *          require:true,
- *          rule:email,
- *          msg:'please enter a email'
- *          },
- *      others:{
- *          require:false,
- *          regex:/^[123]+\d$/,
- *          msg:'others your error msg'
- *  }
- * }
+ * schema-typed 
+ * 地址：https://github.com/rsuite/schema-typed
+    返回结果：
+    {
+        username: { hasError: false },
+        email: { hasError: false },
+        age: { hasError: true, errorMessage: '年龄应该在 18 到 30 岁之间' }
+    },
  */
+function getCheck(data) {
+  return (value, rules) => {
+    for (let i = 0; i < rules.length; i++) {
+      let { onValid, errorMsg } = rules[i]
+      let checkResult = onValid(value, data)
 
-//校验规则
-let validator = {
-    required: {
-        regex: /[^(^\s*)|(\s*$)]/,
-        msg: '请输入至少一个字符'
-    },
-    email: {
-        regex: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-        msg: '请输入正确的邮箱格式'
-    },
-    mobile: {
-        regx: /^[1][3,4,5,6,7,8]\d{9}$/,
-        msg: '请输入正确的手机号码'
-    },
-    max: {
-        msg: '字符超过最大长度'
-    },
-    min: {
-        msg: '字符小于最小长度'
+      if (typeof checkResult == "boolean" && !checkResult) {
+        return { hasError: true, errorMsg }
+      } else if (typeof checkResult === "object") {
+        return checkResult
+      }
     }
+  }
 }
-class Validator {
-    constructor(rules) {
-        this.rules = rules || {};
+class Type {
+  constructor(value) {
+    this.value = value
+    this.hasError = false
+    this.errorMsg = "default msg"
+    this.rules = []
+    this.isRequired = false
+  }
+  check(value, data) {
+    if (this.required) {
+      return { hasError: true, errorMsg: this.requiredMsg }
     }
+    const checkValue = getCheck(data)
+    let rules = []
+    let checkStatus = null
+    this.rules.forEach(item => {
+      rules.push(item)
+    })
+    checkStatus = checkValue(value, rules)
+    if (!checkStatus != null) {
+      return checkStatus
+    }
+    return { hasError: false }
+  }
+  pushCheck(onValid, errorMsg) {
+    errorMsg = errorMsg || this.rules[0].errorMsg
+    this.rules.push({
+      onValid,
+      errorMsg
+    })
+  }
+  isRequired(errorMsg) {
+    this.required = true
+    this.requiredMsg = errorMsg
+    return this
+  }
 }
+class StringTypeModel extends Type {
+  constructor(errorMsg = "enter a valid string") {
+    super("string")
+    super.pushCheck(v => typeof v === "string", errorMsg)
+  }
+}
+class NumberTypeModel extends Type {
+  constructor(errorMsg = "enter a valid number") {
+    super("number")
+    super.pushCheck(v => typeof v === "number", errorMsg)
+  }
+}
+
+const StringType = err => {
+  new StringTypeModel(err)
+}
+const NumberType = err => {
+  new NumberTypeModel(err)
+}
+class SchemaModel {
+  constructor(rules) {
+    this.rules = rules || {}
+    this.error = {}
+  }
+  check(data) {
+    let checkResult = {}
+    Object.keys(this.rules).map(key => {
+      checkResult[key] = this.checkForField(key, data[key], data)
+    })
+    return checkResult
+  }
+  // (name,'kitty',data)
+  checkForField(fieldName, fieldValue, data) {
+    let fieldChecker = this.rules[fieldName] //StringType().isRequired("用户名不能为空")
+    if (!fieldChecker) {
+      return { hasError: false }
+    }
+    return fieldChecker.check(fieldValue, data)
+  }
+}
+
+const model = SchemaModel({
+  username: StringType().isRequired("用户名不能为空"),
+  age: NumberType("年龄应该是一个数字").range(18, 30, "年龄应该在 18 到 30 岁之间")
+})
+
+const checkResult = model.check({
+  username: "foobar",
+  age: 40
+})
+
+console.log("result->", checkResult)
