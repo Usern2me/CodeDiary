@@ -3,36 +3,5 @@
 3. [移动 web 1 像素边框 瞧瞧大公司是怎么做的](https://segmentfault.com/a/1190000007604842)
 4. [使用 JS 控制伪元素的几种方法](http://www.dengzhr.com/frontend/css/797)
 5. [一篇真正教会你开发移动端页面的文章-关于 rem 里字体的换算](http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/)
-6. (```)
-html {
-    font-size: 16px;
-}
-@media screen and (min-width: 375px) {
-    html {
-        /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */
-        font-size: calc(100% + 2 * (100vw - 375px) / 39);
-        font-size: calc(16px + 2 * (100vw - 375px) / 39);
-    }
-}
-@media screen and (min-width: 414px) {
-    html {
-        /* 414px-1000px每100像素宽字体增加1px(18px-22px) */
-        font-size: calc(112.5% + 4 * (100vw - 414px) / 586);
-        font-size: calc(18px + 4 * (100vw - 414px) / 586);
-    }
-}
-@media screen and (min-width: 600px) {
-    html {
-        /* 600px-1000px每100像素宽字体增加1px(20px-24px) */
-        font-size: calc(125% + 4 * (100vw - 600px) / 400);
-        font-size: calc(20px + 4 * (100vw - 600px) / 400);
-    }
-}
-@media screen and (min-width: 1000px) {
-    html {
-        /* 1000px往后是每100像素0.5px增加 */
-        font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000);
-        font-size: calc(22px + 6 * (100vw - 1000px) / 1000);
-    }
-}
-(```)
+6. ` html { font-size: 16px; } @media screen and (min-width: 375px) { html { /* iPhone6的375px尺寸作为16px基准，414px正好18px大小, 600 20px */ font-size: calc(100% + 2 * (100vw - 375px) / 39); font-size: calc(16px + 2 * (100vw - 375px) / 39); } } @media screen and (min-width: 414px) { html { /* 414px-1000px每100像素宽字体增加1px(18px-22px) */ font-size: calc(112.5% + 4 * (100vw - 414px) / 586); font-size: calc(18px + 4 * (100vw - 414px) / 586); } } @media screen and (min-width: 600px) { html { /* 600px-1000px每100像素宽字体增加1px(20px-24px) */ font-size: calc(125% + 4 * (100vw - 600px) / 400); font-size: calc(20px + 4 * (100vw - 600px) / 400); } } @media screen and (min-width: 1000px) { html { /* 1000px往后是每100像素0.5px增加 */ font-size: calc(137.5% + 6 * (100vw - 1000px) / 1000); font-size: calc(22px + 6 * (100vw - 1000px) / 1000); } } `
+7. [响应式布局和字体细谈-大漠](https://juejin.im/post/5d060ff66fb9a07eee5ecc69)
