@@ -3,3 +3,4 @@
 3. [【全文】狼叔：如何正确的学习 Node.js](https://juejin.im/entry/5b518829e51d455d94715d59)
 4. [koa的實現](https://juejin.im/post/5c8f6f53e51d4516f6680012?utm_source=gold_browser_extension)
 5. [提高效率，记一个内部工具的开发经历](https://juejin.im/post/5c8a7ad06fb9a049ec6bf444?utm_source=gold_browser_extension)
+6. [基于 GitLab CI/CD 的自动化构建、发布实践](https://mp.weixin.qq.com/s?__biz=MzU3NjczNDk2MA==&mid=2247484434&idx=1&sn=5a24a98c47fc012565feaafde0b25fe9&chksm=fd0e178dca799e9b3f75ff680d9c4454254a32a3be7a43dd491e04860df305696ca832c6cc88&mpshare=1&scene=1&srcid=&sharer_sharetime=1564999020652&sharer_shareid=3729371b58078275ac9e25ce4ff764a1#rd)
