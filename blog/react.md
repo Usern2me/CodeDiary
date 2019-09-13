@@ -30,3 +30,5 @@
 21. [React深入分析虚拟DOM](https://juejin.im/post/5cb66fdaf265da0384128445?utm_source=gold_browser_extension)
 22. [REACT组件设计实践总结04](https://juejin.im/post/5cdc2f54e51d453b0c35930d)
     > 这个系列都很不错，很详细的讲了组件设计规范，hook使用范围和示例，应该多看 
+23. [useEffect 完整指南](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
+    > 从组件的数据流和详细的情况和例子说明hook的使用时机，特别好，多看几次
