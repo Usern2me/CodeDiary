@@ -4,17 +4,17 @@
  */
 // 实现1
 function sub_curry(fn) {
-    // 拿第一个参数
+  // 拿第一个参数
   var args = [].slice.call(arguments, 1);
-  return function() {
+  return function () {
     return fn.apply(this, args.concat([].slice.call(arguments)));
   };
 }
 
-function curry(fn, length) {
+function curry1(fn, length) {
   length = length || fn.length;
   var slice = Array.prototype.slice;
-  return function() {
+  return function () {
     if (arguments.length < length) {
       var combined = [fn].concat(slice.call(arguments));
       return curry(sub_curry.apply(this, combined), length - arguments.length);
@@ -25,10 +25,10 @@ function curry(fn, length) {
 }
 
 // 实现2
-function curry(fn, args) {
+function curry2(fn, args) {
   length = fn.length;
   args = args || [];
-  return function() {
+  return function () {
     var _args = args.slice(0),
       arg,
       i;
@@ -44,7 +44,14 @@ function curry(fn, args) {
   };
 }
 
-var fn = curry(function(a, b, c) {
+// https://juejin.im/post/5bf9bb7ff265da616916e816
+const curry3 = (fn, arr = []) => (...args) =>
+  ((arg) => (arg.length === fn.length ? fn(...arg) : curry3(fn, arg)))([
+    ...arr,
+    ...args,
+  ]);
+
+var fn = curry3(function (a, b, c) {
   console.log([a, b, c]);
 });
 

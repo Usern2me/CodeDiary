@@ -1,0 +1,30 @@
+{
+  "title": "emit",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": ""
+    },
+    {
+      "file": "code/test/event-emitter.js",
+      "line": 25,
+      "description": "ddd",
+      "selection": {
+        "start": {
+          "line": 24,
+          "character": 2
+        },
+        "end": {
+          "line": 35,
+          "character": 4
+        }
+      }
+    },
+    {
+      "file": "code/test/event-emitter.js",
+      "line": 40,
+      "description": "remove"
+    }
+  ],
+  "ref": "master"
+}

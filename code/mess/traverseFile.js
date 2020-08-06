@@ -1,9 +1,8 @@
 const fs = require("fs")
 const path = require("path")
 
-let filePath = path.resolve("D:/code/CodeDiary/code")
-
-fileTraverse(filePath)
+const filePath = path.resolve("/code/codeDiary/code")
+const outputPath = path.resolve("D:/code/CodeDiary/code")
 
 function fileTraverse(filePath) {
   //根据文件路径读取文件，返回文件列表
@@ -20,16 +19,12 @@ function fileTraverse(filePath) {
           if (erorr) {
             console.warn("获取文件stats失败")
           } else {
-            if (stats.isFile()) {
-              fs.appendFile(`${filePath}/aaa.txt`, `name--->${filename}\n`, writeerr => {
-                if (writeerr) console.warn("writeFile err--->", writeerr)
-              })
-            }
             if (stats.isDirectory()) {
-              fs.appendFile(`${filePath}/mess/aaa.txt`, `---------------\n`, writeerr => {
-                if (writeerr) console.warn("writeFile err--->", writeerr)
-              })
+              append(`${outputPath}/output.md`, ` dir------->${filename}\n`)
               fileTraverse(filedir) //递归，如果是文件夹，就继续遍历该文件夹下面的文件
+            } else {
+              // console.log(filePath, filename)
+              append(`${outputPath}/output.md`, `  filename------->${filename}\n`)
             }
           }
         })
@@ -37,3 +32,22 @@ function fileTraverse(filePath) {
     }
   })
 }
+
+function append(path, content) {
+  fs.appendFile(path, content, writeerr => {
+    if (writeerr) console.warn("writeFile err--->", writeerr)
+  })
+}
+
+function init() {
+  fs.writeFile(`${outputPath}/output.md`, `-------start------->\n`, writeerr => {
+    if (writeerr) console.warn("writeFile err--->", writeerr)
+  })
+}
+
+function run() {
+  init()
+  fileTraverse(filePath)
+}
+
+run()
