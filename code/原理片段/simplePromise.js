@@ -16,146 +16,152 @@
  *   就走下一个then的成功，如果失败，就走下一个then的失败
  */
 
-const PENDING = "pending";
-const FULFILLED = "fulfilled";
-const REJECTED = "rejected";
-function MyPromise(executor) {
-  let self = this;
-  self.status = PENDING;
-  self.onFulfilled = []; //成功的回调
-  self.onRejected = []; //失败的回调
-  //PromiseA+ 2.1
-  function resolve(value) {
-    if (self.status === PENDING) {
-      self.status = FULFILLED;
-      self.value = value;
-      self.onFulfilled.forEach((fn) => fn()); //PromiseA+ 2.2.6.1
+class MyPromise {
+  constructor(fn) {
+    this.status = this.STATUS_MAP.PENDING;
+    this.result = null;
+    this.reason = null;
+
+    this.onfullfilledList = []; // 成功之后的回调函数列表
+    this.onRejectedList = []; // 失败的
+
+    this.excutor(fn);
+  }
+
+  STATUS_MAP = {
+    PENDING: "pending",
+    REJECTED: "rejected",
+    FULFILLED: "fulfilled",
+  };
+
+  resolve(value) {
+    if (this.status !== this.STATUS_MAP.PENDING) return;
+    this.status = this.STATUS_MAP.FULFILLED;
+    this.result = value;
+    this.onfullfilledList.forEach((fn) => fn());
+  }
+  reject(reason) {
+    if (this.status !== this.STATUS_MAP.PENDING) return;
+    this.status = this.STATUS_MAP.REJECTED;
+    this.reason = reason;
+    this.onRejectedList.forEach((fn) => fn());
+  }
+  excutor(fn) {
+    const self = this;
+
+    try {
+      fn(this.resolve.bind(self), this.reject.bind(self));
+    } catch (err) {
+      this.reject(err);
     }
   }
 
-  function reject(reason) {
-    if (self.status === PENDING) {
-      self.status = REJECTED;
-      self.reason = reason;
-      self.onRejected.forEach((fn) => fn()); //PromiseA+ 2.2.6.2
-    }
-  }
-
-  try {
-    executor(resolve, reject);
-  } catch (e) {
-    reject(e);
-  }
-}
-
-MyPromise.prototype.then = function (onFulfilled, onRejected) {
-  //PromiseA+ 2.2.1 / PromiseA+ 2.2.5 / PromiseA+ 2.2.7.3 / PromiseA+ 2.2.7.4
-  onFulfilled =
-    typeof onFulfilled === "function" ? onFulfilled : (value) => value;
-  onRejected =
-    typeof onRejected === "function"
-      ? onRejected
-      : (reason) => {
-          throw reason;
-        };
-  let self = this;
-  //PromiseA+ 2.2.7
-  let promise2 = new MyPromise((resolve, reject) => {
-    if (self.status === FULFILLED) {
-      //PromiseA+ 2.2.2
-      //PromiseA+ 2.2.4 --- setTimeout
-      setTimeout(() => {
-        try {
-          //PromiseA+ 2.2.7.1
-          let x = onFulfilled(self.value);
-          resolvePromise(promise2, x, resolve, reject);
-        } catch (e) {
-          //PromiseA+ 2.2.7.2
-          reject(e);
-        }
-      });
-    } else if (self.status === REJECTED) {
-      //PromiseA+ 2.2.3
-      setTimeout(() => {
-        try {
-          let x = onRejected(self.reason);
-          resolvePromise(promise2, x, resolve, reject);
-        } catch (e) {
-          reject(e);
-        }
-      });
-    } else if (self.status === PENDING) {
-      self.onFulfilled.push(() => {
+  then(onFulfilled, onRejected) {
+    onFulfilled =
+      onFulfilled instanceof Function ? onFulfilled : (value) => value;
+    onRejected =
+      onRejected instanceof Function
+        ? onRejected
+        : (reason) => {
+            throw reason;
+          };
+    const self = this;
+    let promise2 = new MyPromise((resolve, reject) => {
+      if (self.status === self.STATUS_MAP.FULFILLED) {
         setTimeout(() => {
           try {
-            let x = onFulfilled(self.value);
-            resolvePromise(promise2, x, resolve, reject);
-          } catch (e) {
-            reject(e);
+            let x = onFulfilled(self.result);
+            self.resolvePromise(promise2, x, resolve, reject);
+          } catch (err) {
+            reject(err);
           }
         });
-      });
-      self.onRejected.push(() => {
+      } else if (self.status === self.STATUS_MAP.REJECTED) {
         setTimeout(() => {
           try {
             let x = onRejected(self.reason);
-            resolvePromise(promise2, x, resolve, reject);
-          } catch (e) {
-            reject(e);
+            self.resolvePromise(promise2, x, resolve, reject);
+          } catch (err) {
+            reject(err);
           }
         });
-      });
-    }
-  });
-  return promise2;
-};
-
-function resolvePromise(promise2, x, resolve, reject) {
-  let self = this;
-  //PromiseA+ 2.3.1
-  if (promise2 === x) {
-    reject(new TypeError("Chaining cycle"));
+      } else if (self.status === self.STATUS_MAP.PENDING) {
+        self.onfullfilledList.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onFulfilled(self.result);
+              self.resolvePromise(promise2, x, resolve, reject);
+            } catch (err) {
+              reject(err);
+            }
+          });
+        });
+        self.onRejectedList.push(() => {
+          setTimeout(() => {
+            try {
+              let x = onRejected(self.reason);
+              self.resolvePromise(promise2, x, resolve, reject);
+            } catch (err) {
+              reject(err);
+            }
+          });
+        });
+      }
+    });
+    return promise2;
   }
-  if ((x && typeof x === "object") || typeof x === "function") {
-    let used; //PromiseA+2.3.3.3.3 只能调用一次
-    try {
-      let then = x.then;
-      if (typeof then === "function") {
-        //PromiseA+2.3.3
-        then.call(
-          x,
-          (y) => {
-            //PromiseA+2.3.3.1
-            if (used) return;
-            used = true;
-            resolvePromise(promise2, y, resolve, reject);
-          },
-          (r) => {
-            //PromiseA+2.3.3.2
-            if (used) return;
-            used = true;
-            reject(r);
-          }
-        );
-      } else {
-        //PromiseA+2.3.3.4
+  resolvePromise(promise2, x, resolve, reject) {
+    const that = this;
+    if (promise2 === x) {
+      reject("循环调用");
+    }
+    if ((x && typeof x === "object") || typeof x === "function") {
+      let used = false;
+      try {
+        let then = x.then;
+        if (typeof then === "function") {
+          then.call(
+            x,
+            (y) => {
+              if (used) return;
+              used = true;
+              // 支持链式调用
+              that.resolvePromise(promise2, y, resolve, reject);
+            },
+            (r) => {
+              if (used) return;
+              used = true;
+              reject(r);
+            }
+          );
+        } else {
+          if (used) return;
+          used = true;
+          resolve(x);
+        }
+      } catch (err) {
         if (used) return;
         used = true;
-        resolve(x);
+        reject(err);
       }
-    } catch (e) {
-      //PromiseA+ 2.3.3.2
-      if (used) return;
-      used = true;
-      reject(e);
+    } else {
+      // 普通对象比如数字或字符直接reslove
+      resolve(x);
     }
-  } else {
-    //PromiseA+ 2.3.3.4
-    resolve(x);
+  }
+  finally(cb) {
+    return this.then(
+      (value) => {
+        this.resolve(cb()).then(() => value);
+      },
+      (error) => {
+        this.resolve(cb()).then(() => {
+          throw error;
+        });
+      }
+    );
   }
 }
-
-module.exports = MyPromise;
 
 // test
 function async1() {

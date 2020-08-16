@@ -11,6 +11,18 @@ function throttle(fn, time) {
   };
 }
 
+function throl(fn, time) {
+  let prev = Date.now();
+  return function (...args) {
+    let now = Date.now();
+    let self = this;
+    if (now - prev >= time) {
+      fn.apply(self, args);
+      prev = Date.now();
+    }
+  };
+}
+
 // use:
 const handle = () => {
   console.log("scroll");
@@ -24,5 +36,16 @@ function debounce(fn, time) {
       clearTimeout(timeout);
     }
     timeout = setTimeout(fn, time);
+  };
+}
+
+function deboun(fn, time) {
+  let timeout = null;
+  return function (...args) {
+    const self = this;
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(fn.apply(self, args), time);
   };
 }
