@@ -51,11 +51,20 @@ const curry3 = (fn, arr = []) => (...args) =>
     ...args,
   ]);
 
-var fn = curry3(function (a, b, c) {
-  console.log([a, b, c]);
+const curry4 = function (fn, ...args) {
+  console.log("args--->", fn.length);
+  if (args.length >= fn.length) {
+    return fn(...args);
+  }
+  return function (...arg2) {
+    return curry4(fn, ...args, ...arg2);
+  };
+};
+const fn = curry4(function (a, b, c) {
+  // console.log("----------", [a, b, c]);
 });
 
-fn("a", "b", "c"); // ["a", "b", "c"]
-fn("a", "b")("c"); // ["a", "b", "c"]
-fn("a")("b")("c"); // ["a", "b", "c"]
+// fn("a", "b", "c"); // ["a", "b", "c"]
+// fn("a", "b")("c"); // ["a", "b", "c"]
+// fn("a")("b")("c"); // ["a", "b", "c"]
 fn("a")("b", "c"); // ["a", "b", "c"]

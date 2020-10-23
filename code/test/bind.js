@@ -6,9 +6,9 @@ function call(context, ...args) {
   return result;
 }
 
-function apply(context, arr) {
+function apply(context, ...args) {
   context.fn = this;
-  let result = context.fn(...arr);
+  let result = context.fn(...args);
   delete context.fn;
   return result;
 }
@@ -20,6 +20,8 @@ Function.prototype.bindFn = function (fn, ...args) {
     return self.apply(fn, args.concat(fnArgs));
   };
 };
+
+
 
 var obj = {
   name: "若川",

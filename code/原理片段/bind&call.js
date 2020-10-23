@@ -19,7 +19,7 @@ Function.prototype.call2 = function (context, ...args) {
 Function.prototype.bind2 = function (context) {
   let self = this;
   let args = Array.prototype.slice.call(this.arguments, 1);
-
+  trf;
   let fNOP = function () {}; //中间空函数，传递原型链用
 
   let fbound = function () {
