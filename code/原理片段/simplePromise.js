@@ -34,6 +34,16 @@ class MyPromise {
     FULFILLED: "fulfilled",
   };
 
+  excutor(fn) {
+    const self = this;
+
+    try {
+      fn(this.resolve.bind(self), this.reject.bind(self));
+    } catch (err) {
+      this.reject(err);
+    }
+  }
+
   resolve(value) {
     if (this.status !== this.STATUS_MAP.PENDING) return;
     this.status = this.STATUS_MAP.FULFILLED;
@@ -45,15 +55,6 @@ class MyPromise {
     this.status = this.STATUS_MAP.REJECTED;
     this.reason = reason;
     this.onRejectedList.forEach((fn) => fn());
-  }
-  excutor(fn) {
-    const self = this;
-
-    try {
-      fn(this.resolve.bind(self), this.reject.bind(self));
-    } catch (err) {
-      this.reject(err);
-    }
   }
 
   then(onFulfilled, onRejected) {

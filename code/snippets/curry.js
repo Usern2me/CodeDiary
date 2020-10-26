@@ -52,7 +52,7 @@ const curry3 = (fn, arr = []) => (...args) =>
   ]);
 
 const curry4 = function (fn, ...args) {
-  console.log("args--->", fn.length);
+  console.log("args--->", args.length);
   if (args.length >= fn.length) {
     return fn(...args);
   }

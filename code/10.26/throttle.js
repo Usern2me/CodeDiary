@@ -1,29 +1,22 @@
 function throttle(fn, time) {
   let prev = Date.now();
-
   return function (...args) {
     const context = this;
     let now = Date.now();
     if (now - prev >= time) {
       fn.apply(context, args);
-      prev = Date.now();
+      prev = now;
     }
   };
 }
 
-// use:
-const handle = () => {
-  console.log("scroll");
-};
-setInterval(throttle(handle, 1000), 200);
-
 function debounce(fn, time) {
   let timeout = null;
   return function (...args) {
-    const self = this;
+    const context = this;
     if (timeout) {
       clearTimeout(timeout);
     }
-    timeout = setTimeout(fn.apply(self, args), time);
+    timeout = setTimeout(fn.apply(context, args), time);
   };
 }
